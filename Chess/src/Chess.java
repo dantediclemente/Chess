@@ -56,6 +56,7 @@ public class Chess
 	public static boolean KingExit() //method that exits window if king is captured
 	{
 		int king = 0;
+		Piece kingRemaining = null;
 		for(int x = 0; x < 8; x++)
 		{
 			for(int y = 0; y < 8; y++)
@@ -69,7 +70,26 @@ public class Chess
 		}
 		if(king != 2) //if there is not 2 kings on the board then the game exits
 		{
-			System.out.println("A king has been captured!");
+			for(int x = 0; x < 8; x++)
+			{
+				for(int y = 0; y < 8; y++)
+				{
+					Piece piece = Chess.position[x][y];
+					if (piece instanceof King) 
+					{
+						kingRemaining = Chess.position[x][y]; //determines what king was captured
+					}
+				}
+			}
+			
+			if(kingRemaining.color == true) //lets you know if you won or lost
+			{
+				System.out.println("You won!");
+			}
+			else
+			{
+				System.out.println("You lost!");
+			}
 			return true;
 		}
 		else
@@ -78,3 +98,4 @@ public class Chess
 		}
 	}
 }
+
