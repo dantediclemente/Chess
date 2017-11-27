@@ -36,13 +36,11 @@ public class BoardComponent extends JComponent
 				if(Chess.position[x][y] != null)
 				{
 					Chess.position[x][y].drawPiece(g, x, y); //draws piece if it is not null
-					repaint(); //refreshes after move
+					
 					if(Chess.KingExit())
 						System.exit(0);
-					
 				}
 			}
 		}
 	}
-	
 }

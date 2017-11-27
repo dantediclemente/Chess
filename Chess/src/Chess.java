@@ -6,6 +6,7 @@ public class Chess
 	public static final int WINDOWHEIGHT = 372;
 	
 	public static Piece[][] position = new Piece[8][8]; //creates 2D array
+	public static BoardComponent board;
 	
 	public static void main(String[] args) 
 	{	
@@ -46,7 +47,7 @@ public class Chess
 		JFrame window = new JFrame("Chess");
 		window.setSize(WINDOWWIDTH, WINDOWHEIGHT);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		BoardComponent board = new BoardComponent(); //creates board
+		board = new BoardComponent(); //creates board
 		
 		window.add(board);
 		board.addMouseListener(new BoardMouseListener()); //adds listener 
@@ -56,6 +57,7 @@ public class Chess
 	public static boolean KingExit() //method that exits window if king is captured
 	{
 		int king = 0;
+		Piece kingRemaining = null;
 		for(int x = 0; x < 8; x++)
 		{
 			for(int y = 0; y < 8; y++)
@@ -69,7 +71,26 @@ public class Chess
 		}
 		if(king != 2) //if there is not 2 kings on the board then the game exits
 		{
-			System.out.println("A king has been captured!");
+			for(int x = 0; x < 8; x++)
+			{
+				for(int y = 0; y < 8; y++)
+				{
+					Piece piece = Chess.position[x][y];
+					if (piece instanceof King) 
+					{
+						kingRemaining = Chess.position[x][y]; //determines what king was captured
+					}
+				}
+			}
+			
+			if(kingRemaining.color == true) //lets you know if you won or lost
+			{
+				System.out.println("You won!");
+			}
+			else
+			{
+				System.out.println("You lost!");
+			}
 			return true;
 		}
 		else

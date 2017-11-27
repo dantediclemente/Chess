@@ -25,7 +25,8 @@ public class Pawn extends Piece
 			{
 				return true;
 			}
-			else if(starty == 6 && endy == 7 && (startx - endx == 0)) //transform white pawn to queen
+			else if((starty == 6 && endy == 7 && (startx - endx == 0)) || //transform white pawn to queen
+					(starty == 6 && endy == 7 && ((startx - endx == 1 || startx - endx == -1) && Chess.position[endx][endy] != null))) //fixed it so it also transforms to queen if it is attacking
 			{
 				Chess.position[startx][starty] = null;
 				Chess.position[startx][starty] = new Queen(true);
