@@ -3,10 +3,10 @@ import java.awt.event.MouseListener;
 
 public class BoardMouseListener implements MouseListener
 {	
-	public int startx; //variables for positions on board
-	public int starty;
-	public int endx;
-	public int endy;
+	protected int startx; //variables for positions on board
+	protected int starty;
+	protected int endx;
+	protected int endy;
 	
 	public void mousePressed(MouseEvent e)  //gets coordinates and divides them to make an integer 0 through 7
 	{
@@ -33,6 +33,8 @@ public class BoardMouseListener implements MouseListener
 		{
 			Chess.position[endx][endy] = Chess.position[startx][starty]; //changes position of piece if valid
 			Chess.position[startx][starty] = null;
+			Chess.board.repaint();
+			
 			while(true) //randomly generates moves by a computer player
 			{
 				int compStartx = (int)(Math.random()*8);
@@ -46,7 +48,9 @@ public class BoardMouseListener implements MouseListener
 					Chess.position[compStartx][compStarty].canMove(compStartx, compStarty, compEndx, compEndy) == false) //checks if computer players move is valid
 				{	
 					continue;
-				} else {
+				} 
+				else 
+				{
 					Chess.position[compEndx][compEndy] = Chess.position[compStartx][compStarty]; //changes position of computer piece if valid
 					Chess.position[compStartx][compStarty] = null;
 					break;

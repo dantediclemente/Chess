@@ -6,6 +6,7 @@ public class Chess
 	public static final int WINDOWHEIGHT = 372;
 	
 	public static Piece[][] position = new Piece[8][8]; //creates 2D array
+	public static BoardComponent board;
 	
 	public static void main(String[] args) 
 	{	
@@ -46,7 +47,7 @@ public class Chess
 		JFrame window = new JFrame("Chess");
 		window.setSize(WINDOWWIDTH, WINDOWHEIGHT);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		BoardComponent board = new BoardComponent(); //creates board
+		board = new BoardComponent(); //creates board
 		
 		window.add(board);
 		board.addMouseListener(new BoardMouseListener()); //adds listener 
